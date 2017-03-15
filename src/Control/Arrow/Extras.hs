@@ -2,6 +2,10 @@ module Control.Arrow.Extras where
 
 import Control.Arrow
 
+infixl 0 >*>
+infixr 1 $>>, >>$
+infixr 1 $<<, <<$
+
 -- | Feed the output of second arrow into the output of the first arrow.
 -- Can be used to emulate Applicative <*> like usage:
 --
@@ -22,17 +26,17 @@ import Control.Arrow
 af >*> ab = af &&& ab >>^ (fst <*> snd)
 
 -- | precomposition with a pure value
-(<<^=) :: Arrow a => a c d -> c -> a x d
-p <<^= v = p <<^ const v
+(<<$) :: Arrow a => a c d -> c -> a x d
+p <<$ v = p <<^ const v
 
 -- | postcomposition with a pure value
-(>>^=) :: Arrow a => a b c -> d -> a b d
-p >>^= v = p >>^ const v
+(>>$) :: Arrow a => a b c -> d -> a b d
+p >>$ v = p >>^ const v
 
 -- | postcomposition with a pure value (right-to-left variant)
-(=^<<) :: Arrow a => d -> a b c -> a b d
-v =^<< p = const v ^<< p
+($<<) :: Arrow a => d -> a b c -> a b d
+v $<< p = const v ^<< p
 
 -- | precomposition with a pure value (right-to-left variant)
-(=^>>) :: Arrow a => c -> a c d -> a x d
-v =^>> p = const v ^>> p
+($>>) :: Arrow a => c -> a c d -> a x d
+v $>> p = const v ^>> p
