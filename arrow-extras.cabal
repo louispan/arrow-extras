@@ -1,5 +1,5 @@
 name:                arrow-extras
-version:             0.1.0.1
+version:             0.2.0.0
 synopsis:            Extra functions for Control.Arrow
 description:         Extra functions for Control.Arrow
 homepage:            https://github.com/louispan/arrow-extras#readme
